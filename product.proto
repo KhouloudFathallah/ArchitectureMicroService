@@ -1,0 +1,60 @@
+syntax = "proto3";
+
+package product;
+
+
+message Product {
+  string title = 1;
+  string description = 2;
+  float price=3;
+
+}
+
+message GetProductRequest {
+  string product_id = 1;
+}
+
+message GetProductResponse {
+  Product product = 1;
+}
+
+message SearchProductsRequest {
+  string query = 1;
+}
+
+message SearchProductsResponse {
+  repeated Product product = 1;
+}
+
+message CreateProductRequest{
+  string message=1;
+}
+
+message CreateProductResponse{
+  Product product=1;
+}
+message UpdateProductRequest {
+  string name = 1;
+  string email = 2;
+  string password=3;
+}
+
+message UpdateProductResponse {
+  Product product = 1;
+}
+
+message DeleteProductRequest {
+  string product_id = 1;
+}
+
+message DeleteProductResponse {
+  bool success = 1;
+}
+service ProductService {
+  rpc GetProduct(GetProductRequest) returns (GetProductResponse);
+  rpc SearchProducts(SearchProductsRequest) returns (SearchProductsResponse);
+    rpc CreateProduct(CreateProductRequest) returns (CreateProductResponse);
+    rpc UpdateProduct(UpdateProductRequest) returns (UpdateProductResponse);
+    rpc DeleteProduct(DeleteProductRequest) returns (DeleteProductResponse);
+  
+}
