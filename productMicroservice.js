@@ -10,8 +10,8 @@ const productProtoDefinition = protoLoader.loadSync(productProtoPath, {
   oneofs: true,
 });
 const productProto = grpc.loadPackageDefinition(productProtoDefinition).product;
-const url = "mongodb+srv://ecommerce:ecommerce@cluster0.5hfgv.mongodb.net/";
-const dbName = "ecommerce";
+const url = "mongodb+srv://khouloudfathallah:khouloud13@cluster0.ypkkm3r.mongodb.net/";
+const dbName = "khouloudfathallah";
 
 async function connect() {
   const client = new MongoClient(url);
@@ -46,19 +46,18 @@ const productService = {
 
   updateProduct: async (call, callback) => {
     const db = await connect();
-    const { product_id, title, description, price } = call.request;
+    const { updateProductId, title, description, price } = call.request;
     const updatedProduct = {
-      product_id,
       title,
       description,
       price,
     };
     await db
       .collection("products")
-      .updateOne({ _id: ObjectID(product_id) }, { $set: updatedProduct });
+      .updateOne({ _id: ObjectID(updateProductId) }, { $set: updatedProduct });
     const product = await db
       .collection("products")
-      .findOne({ _id: ObjectID(product_id) });
+      .findOne({ _id: ObjectID(updateProductId) });
     callback(null, { product: product });
   },
 

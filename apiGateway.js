@@ -40,8 +40,8 @@ const clientProducts = new productProto.ProductService(
   grpc.credentials.createInsecure()
 );
 // MongoDB connection
-const url = "mongodb+srv://ecommerce:ecommerce@cluster0.5hfgv.mongodb.net/";
-const dbName = "ecommerce";
+const url = "mongodb+srv://khouloudfathallah:khouloud13@cluster0.ypkkm3r.mongodb.net/";
+const dbName = "khouloudfathallah";
 
 async function connect() {
   const client = new MongoClient(url);

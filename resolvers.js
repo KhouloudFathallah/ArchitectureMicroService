@@ -20,8 +20,8 @@ const productProtoDefinition = protoLoader.loadSync(productProtoPath, {
 const userProto = grpc.loadPackageDefinition(userProtoDefinition).user;
 const productProto = grpc.loadPackageDefinition(productProtoDefinition).product;
 
-const url = "mongodb+srv://ecommerce:ecommerce@cluster0.5hfgv.mongodb.net/";
-const dbName = "ecommerce";
+const url = "mongodb+srv://khouloudfathallah:khouloud13@cluster0.ypkkm3r.mongodb.net/";
+const dbName = "khouloudfathallah";
 
 async function connect() {
   const client = new MongoClient(url);
@@ -120,7 +120,7 @@ const resolvers = {
         );
       });
     },
-    updateUser: async ({ id, name, email, password }, context) => {
+    /*updateUser: async ({ id, name, email, password }, context) => {
       const db = await connect();
       const user = {
         name,
@@ -133,7 +133,7 @@ const resolvers = {
         .updateOne({ _id: ObjectId(id) }, { $set: user });
 
       return user;
-    },
+    },*/
 
     deleteUser: async (parent, { id }, context) => {
       const db = await connect();
@@ -167,20 +167,20 @@ const resolvers = {
       });
     },
 
-    updateProduct: async ({ id, title, description, price }, context) => {
+   /* updateProduct: async (req,res, context) => {
       const db = await connect();
       const product = {
         title,
         description,
         price,
-      };
+      } = req.body;
 
       const result = await db
         .collection("products")
-        .updateOne({ _id: ObjectId(id) }, { $set: product });
+        .updateOne({ _id: ObjectId(req.body.updateProductId) }, { $set: product });
 
       return product;
-    },
+    },*/
 
     deleteProduct: async (parent, { id }, context) => {
       const db = await connect();
